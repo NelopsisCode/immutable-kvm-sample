@@ -71,9 +71,19 @@ EOF
     destination = "/tmp/install-ansible.sh"
   }
 
+  provisioner "file" {
+    source = "prometheus_metric_generator.jar"
+    destination = "/home/debian/prometheus_metric_generator.jar"
+  }
+
+  provisioner "file" {
+    source = "java-app.service"
+    destination = "/home/debian/java-app.service"
+  }
+
   provisioner "shell" {
     inline = [
-      "sh -cx 'sudo bash /tmp/install-ansible.sh'"
+      "sh -cx 'sudo bash /tmp/install-ansible.sh'",
     ]
   }
 
@@ -100,7 +110,7 @@ source qemu "debian" {
   disk_size   = 8000
   accelerator = "kvm"
 
-  headless = false
+  headless = true
 
   http_port_min  = 9990
   http_port_max  = 9999

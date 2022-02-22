@@ -1,0 +1,9 @@
+[Unit]
+Description=My Webapp Java REST Service
+[Service]
+ExecStart=/usr/bin/java -jar /home/debian/prometheus_metric_generator.jar
+
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
